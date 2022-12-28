@@ -27,7 +27,7 @@ createTestCafe('localhost', 1437, 1438)
     testCafe = tc;
 
     const runner = testCafe.createRunner()
-      .browsers('chrome:headless')
+      .browsers(args.device ? `chrome:headless:emulation:device=${args.device}` : 'chrome:headless')
       .reporter(reporters)
       .src([
         `tests/${args.page}.test.js`,
@@ -41,6 +41,8 @@ createTestCafe('localhost', 1437, 1438)
     env.project = args.project;
     env.port = currentPackage.port;
     env.theme = args.theme;
+    env.screenMode = args.device ? 'mobile' : 'desktop';
+    env.device = args.device || '';
 
     return runner.run({
       quarantineMode: args.quarantineMode === 'true',
