@@ -30,13 +30,12 @@
 import { formatPrice } from '@/utils/formatters';
 import { Sales, SalesOrOpportunitiesByCategory } from '@/types/analytics';
 import { computed, withDefaults } from 'vue';
-import CardAnalytics from '@/components/library/card-analytics.vue';
 
 const props = withDefaults(
   defineProps<{
     icon: string,
-    tone?: 'warning' | 'info',
-    title? : string,
+    tone?: 'warning' | 'info', // eslint-disable-line vue/require-default-prop
+    title: string,
     data?: SalesOrOpportunitiesByCategory | Sales | null,
     total?: string | null,
     percentage: number,
